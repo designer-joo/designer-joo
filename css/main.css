@@ -1,69 +1,217 @@
 @charset 'utf-8';
 
-html{font-family: 'Noto Sans KR', sans-serif; font-size: 14px;}
+html {
+	font-family: "Noto Sans KR", sans-serif;
+	font-size: 14px;
+}
 
-body{overflow-x: hidden; color:rgb(29,29,31); letter-spacing: -0.05em; background-color: #fff;}
+body {
+	overflow-x: hidden;
+	color: rgb(29, 29, 31);
+	letter-spacing: -0.05em;
+	background-color: #fff;
+}
 
-p{line-height: 1.6;}
+p {
+	line-height: 1.6;
+}
 
-a{text-decoration: none; color:rgb(29,29,31);}
+a {
+	text-decoration: none;
+	color: rgb(29, 29, 31);
+}
 
+.global-nav {
+	height: 44px;
+	padding: 0 1rem;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+}
 
+.global-nav-links,
+.local-nav-links {
+	display: flex;
+	align-items: center;
+	max-width: 1000px;
+	height: 100%;
+	margin: 0 auto;
+}
+.global-nav-links {
+	justify-content: space-between;
+}
 
-.global-nav {height: 44px; padding: 0 1rem; position: absolute; top: 0; left: 0; width: 100%;}
+.local-nav {
+	height: 52px;
+	border-bottom: 1px solid #ddd;
+	padding: 0 1rem;
+	position: absolute;
+	top: 45px;
+	left: 0;
+	width: 100%;
+}
+.myname {
+	margin-right: auto;
+	font-size: 1.8rem;
+	font-weight: 600;
+}
+.local-nav-links a:not(.myname) {
+	margin-left: 2em;
+	font-size: 0.8rem;
+}
 
-.global-nav-links,.local-nav-links{display:flex;  align-items: center; max-width:1000px; height: 100%; margin:0 auto;}
-.global-nav-links{justify-content: space-between;}
+.scroll-section {
+	padding-top: 50vh;
+	border: 1px solid palevioletred;
+}
+#scroll-section-0 h1 {
+	font-size: 4rem;
+	text-align: center;
+}
+.main-message {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 4.5em;
+	font-size: 1.5rem;
+	margin: 5px;
+	opacity: 0;
+	top: 35vh;
+}
+.main-message p {
+	line-height: 2rem;
+	text-align: center;
+	font-weight: bold;
+}
+.main-message small {
+	display: block;
+	font-size: 1.2rem;
+	margin-bottom: 0.5em;
+}
+#scroll-section-2 .main-message p {
+	font-size: 3rem;
+}
 
-.local-nav{height: 52px; border-bottom: 1px solid #ddd; padding: 0 1rem; position: absolute; top: 45px; left: 0; width: 100%;}
-.myname{margin-right: auto; font-size: 1.8rem; font-weight: 600;}
-.local-nav-links a:not(.myname){margin-left: 2em; font-size: 0.8rem;}
+#scroll-section-2 .b {
+	top: 10%;
+	left: 40%;
+}
+#scroll-section-2 .c {
+	top: 15%;
+	left: 45%;
+}
 
-.scroll-section{padding-top: 50vh; border: 1px solid palevioletred;}
-#scroll-section-0 h1{font-size: 4rem; text-align: center;}
-.main-message{display: flex; align-items: center; justify-content: center; height: 4.5em; font-size: 1.5rem; margin:5px; opacity: 0; top:35vh; }
-.main-message p{line-height: 2rem; text-align: center; font-weight: bold;}
-.main-message small{display: block; font-size: 1.2rem; margin-bottom: 0.5em;}
-#scroll-section-2 .main-message p{font-size: 3rem;}
+.description {
+	max-width: 1000px;
+	margin: 0 auto;
+	font-size: 1.2rem;
+	color: #888;
+	padding: 0 1rem;
+}
+.description strong {
+	font-size: 3rem;
+	color: rgb(29, 29, 31);
+	float: left;
+	margin-right: 0.2em;
+}
 
-.description{max-width: 1000px; margin: 0 auto; font-size: 1.2rem; color: #888; padding: 0 1rem;}
-.description strong{font-size:3rem; color:rgb(29,29,31); float: left; margin-right: 0.2em;}
+.desc-message {
+	width: 50%;
+	font-weight: bold;
+}
 
-.desc-message{width: 50%; font-weight: bold; }
-.pin{width: 1px; height:100px; background-color:rgb(29,29,31);}
+.pin {
+	width: 1px;
+	height: 100px;
+	background-color: rgb(29, 29, 31);
+}
 
-.mid-message{max-width: 1000px;  text-align: center; margin: 0 auto;  padding: 0 1rem;  color: #888;  font-size: 1.5rem;}
-.mid-message strong{color:rgb(29,29,31); display: block;}
+.mid-message {
+	max-width: 1000px;
+	text-align: center;
+	margin: 0 auto;
+	padding: 0 1rem;
+	color: #888;
+	font-size: 1.5rem;
+}
+.mid-message strong {
+	color: rgb(29, 29, 31);
+	display: block;
+}
 
-.sticky-elem{display:none; position: fixed; left:0; width: 100%;}
+.sticky-elem {
+	display: none;
+	position: fixed;
+	left: 0;
+	width: 100%;
+}
 
 /*스크롤 섹션 매칭*/
-body#show-scene-0 #scroll-section-0 .sticky-elem, 
-body#show-scene-1 #scroll-section-1 .sticky-elem, 
-body#show-scene-2 #scroll-section-2 .sticky-elem, 
-body#show-scene-3 #scroll-section-3 .sticky-elem {display: block;}
+body#show-scene-0 #scroll-section-0 .sticky-elem,
+body#show-scene-1 #scroll-section-1 .sticky-elem,
+body#show-scene-2 #scroll-section-2 .sticky-elem,
+body#show-scene-3 #scroll-section-3 .sticky-elem {
+	display: block;
+}
 
-.canvas-catption{max-width: 1000px;  text-align: center; margin: 0 auto; color: #888; padding: 0 1rem; font-size: 1.2rem; }
+.canvas-catption {
+	max-width: 1000px;
+	text-align: center;
+	margin: 0 auto;
+	color: #888;
+	padding: 0 1rem;
+	font-size: 1.2rem;
+}
 
-.footer{display: flex; align-items: center; justify-content: center; height: 7rem; background-color: powderblue; color: #fff; margin-top: 1em;}
+.footer {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 7rem;
+	background-color: powderblue;
+	color: #fff;
+	margin-top: 1em;
+}
 
+@media (min-width: 1024px) {
+	#scroll-section-0 h1 {
+		font-size: 10vh;
+	}
+	.main-message {
+		font-size: 4vh;
+		margin: 10vh auto;
+	}
+	.main-message p {
+		line-height: 4.5vh;
+	}
+	.description {
+		font-size: 2rem;
+	}
+	.description strong {
+		font-size: 6rem;
+	}
+	.main-message small {
+		font-size: 1.5vh;
+	}
+	#scroll-section-2 .main-message p {
+		font-size: 6vh;
+	}
+	#scroll-section-2 .b {
+		top: 20%;
+		left: 53%;
+	}
+	#scroll-section-2 .c {
+		left: 55%;
+	}
+	sticky-elem .desc-message {
+		width: 20%;
+	}
 
-
-
-@media (min-width:1024px) {
-
-    #scroll-section-0 h1{font-size: 10vh;}
-    .main-message{font-size: 4vh; margin:10vh auto;}
-    .main-message p{ line-height: 4.5vh;}
-    .description{font-size: 2rem;}
-    .description strong{font-size: 6rem;}
-    .main-message small{font-size:1.5vh;}
-    #scroll-section-2 .main-message p{font-size: 6vh;}
-    .desc-message{width: 20%;}
-
-    .mid-message{font-size: 4vh;}
-    .canvas-catption{font-size: 2rem;}
-    
-
-
+	.mid-message {
+		font-size: 4vh;
+	}
+	.canvas-catption {
+		font-size: 2rem;
+	}
 }
