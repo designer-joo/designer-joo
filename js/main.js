@@ -21,8 +21,14 @@
         },
         values : {
             messageA_Opacity_in:[0, 1, { start:0.1, end:0.2 }], 
-            messageB_Opacity:[0, 1, { start:0.3, end:0.4 }],
-            messageA_Opacity_out:[1, 0, { start:0.25, end:0.3 }]
+            messageA_translateY_in:[20, 0, { start:0.1, end:0.2 }],
+            messageA_Opacity_out:[1, 0, { start:0.25, end:0.3 }],
+            messageA_translateY_out:[0, -20, { start:0.25, end:0.3 }],
+
+            messageB_Opacity_in:[0, 1, { start:0.3, end:0.4 }],
+            messageB_Opacity_out:[1, 0, { start:0.35, end:0.5 }],
+            messageB_translateY_in:[20, 0, { start:0.3, end:0.4 }],
+            messageB_translateY_out:[0, -20, { start:0.35, end:0.5 }]
 
         }
     },
@@ -59,10 +65,19 @@
 
    function setLayout(){
      for(let i = 0; i < sceneInfo.length; i++){
-        sceneInfo[i].scrollHeight = sceneInfo[i].heightNum * window.innerHeight;
-        sceneInfo[i].objs.container.style.height = `${sceneInfo[i].scrollHeight}px`;
-     }
 
+        if (sceneInfo[i].type === 'sticky'){
+            
+            sceneInfo[i].scrollHeight = sceneInfo[i].heightNum * window.innerHeight;
+            sceneInfo[i].objs.container.style.height = `${sceneInfo[i].scrollHeight}px`;
+         }else if (sceneInfo[i].type === 'normal'){
+            sceneInfo[i].scrollHeight = sceneInfo[i].objs.container.offsetHeight;
+         }
+         
+        }
+
+
+     YOffset = window.pageXOffset;
      // 새로고침 할 때 ID에 맞게 현재 씬넘버에 해당되는 sticky-elem 불러오기
      let totlaScrollHeight = 0;
      for(let i = 0; i < sceneInfo.length; i++){
@@ -123,9 +138,9 @@ function scrollLoop(){
 
    // opacity 값을 조정함 
    // 각 현재 얼마나 스크롤(currentYOffset)이 되는지 비율로 구해야함
-function calcValues(values, currentYOffset){
+    function calcValues(values, currentYOffset){
     let rv;
-    
+   
    //현재 씬 (스크롤섹션)에서 스크롤 된 영역구하기
    const scrollHeight = sceneInfo[currentScene].scrollHeight
    const scrollRatio = currentYOffset / scrollHeight;
@@ -155,24 +170,40 @@ function calcValues(values, currentYOffset){
    return rv;
 }   
 
-function playanimation(){
+    function playanimation(){
     const objs = sceneInfo[currentScene].objs;
     const values = sceneInfo[currentScene].values;
+    const scrollHeight = sceneInfo[currentScene].scrollHeight;
     const currentYOffset = YOffset-prevScrollHeight;
-    
+    const scrollRatio = currentYOffset / scrollHeight;
        
 
     switch(currentScene){
+              
         case 0:
         // console.log('play0');
         const messageA_Opacity_in = calcValues(values.messageA_Opacity_in, currentYOffset);
         const messageA_Opacity_out = calcValues(values.messageA_Opacity_out, currentYOffset);
-        objs.messageA.style.opacity = messageA_Opacity_in;
-        console.log(messageA_Opacity_in);
+        const messageA_translateY_in = calcValues(values.messageA_translateY_in, currentYOffset);
+        const messageA_translateY_out = calcValues(values.messageA_translateY_out, currentYOffset);
+
+        if(scrollRatio <= 0.2){
+            objs.messageA.style.opacity = messageA_Opacity_in;
+            objs.messageA.style.transform = `translateY(${messageA_translateY_in}%)`;
+        }else{
+            objs.messageA.style.opacity = messageA_Opacity_out;
+            objs.messageA.style.transform = `translateY(${messageA_translateY_out}%)`;
+        }
+        
+        
+
+
+
         break;
 
         case 1:
         // console.log('play1');
+        
         break;
 
         case 2:
