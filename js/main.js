@@ -102,7 +102,7 @@
 			}
 		}
 
-		YOffset = window.pageXOffset;
+		YOffset = window.pageYOffset;
 		// 새로고침 할 때 ID에 맞게 현재 씬넘버에 해당되는 sticky-elem 불러오기
 		let totlaScrollHeight = 0;
 		for (let i = 0; i < sceneInfo.length; i++) {
